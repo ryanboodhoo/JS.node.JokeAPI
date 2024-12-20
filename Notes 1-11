@@ -1,12 +1,1466 @@
 Chapter 1
+JavaScript is a versatile programming language originally created to make web pages interactive. Scripts written in JavaScript can be embedded in HTML and run automatically as the page loads, without requiring compilation.
+
+Key Features of JavaScript
+Origins and Name: Initially called LiveScript, it was renamed to JavaScript to leverage Java's popularity. Over time, it became independent and follows the ECMAScript specification.
+Execution Environments: While primarily browser-based, JavaScript can now run on servers and other devices with JavaScript engines (e.g., V8 in Chrome, SpiderMonkey in Firefox).
+Engine Workflow: Engines parse scripts, compile them into machine code, and optimize the code for fast execution.
+Capabilities of In-Browser JavaScript
+What It Can Do:
+Manipulate HTML and CSS.
+Respond to user actions (e.g., clicks, key presses).
+Send/receive network requests.
+Store data locally on the client side.
+What It Cannot Do:
+Access files or OS-level functions without user permission.
+Interact with other browser tabs (due to the Same Origin Policy).
+Communicate freely with external domains without explicit consent (via CORS).
+What Makes JavaScript Unique
+JavaScript stands out for its:
+
+Seamless integration with HTML/CSS.
+Simplicity for basic tasks.
+Ubiquitous support across all major browsers.
+It is the most popular tool for creating browser interfaces and has extended uses, such as building servers and mobile apps.
+
+Languages That Compile to JavaScript
+To address varying needs, developers have created languages that transpile to JavaScript, such as:
+
+CoffeeScript: Adds concise syntax.
+TypeScript: Introduces strict typing for complex systems.
+Flow: Adds data typing differently.
+Dart: A standalone language also transpilable to JavaScript.
+Brython: Enables Python to work as JavaScript.
+Kotlin: Targets both browsers and Node.js.
+Summary
+JavaScript began as a browser-exclusive language but is now used in many environments. It remains the most widely adopted language for browser development, fully integrated with HTML/CSS, and serves as the foundation for many modern programming languages.
+
+
+Code Editors: The Programmer's Workspace
+Programmers spend most of their time using code editors, which come in two main types: IDEs (Integrated Development Environments) and lightweight editors. Many developers use one of each based on their needs.
+
+Integrated Development Environments (IDEs)
+An IDE is a feature-rich editor designed to handle entire projects. It provides:
+
+Project-level tools: Handles multiple files and navigation.
+Autocompletion: Based on the entire project, not just the open file.
+Integration: With version control (e.g., Git), testing environments, and other tools.
+Popular IDEs:
+Visual Studio Code: Cross-platform and free.
+WebStorm: Cross-platform and paid.
+Visual Studio (Windows only): A paid, powerful IDE for .NET and JavaScript, with a free version called Visual Studio Community.
+
+
 Chapter 2
+
+Statements
+Definition: Syntax constructs and commands that perform actions.
+Examples:
+javascript
+Copy code
+alert('Hello'); 
+alert('World');
+Separation: Statements are typically separated by semicolons (;) for clarity.
+Semicolons
+Optional in Some Cases:
+
+JavaScript often uses automatic semicolon insertion (ASI) when there’s a line break.
+javascript
+Copy code
+alert('Hello')
+alert('World')
+This works due to implicit semicolon insertion.
+
+Exceptions to ASI:
+
+Newlines don’t always imply semicolons. For example:
+javascript
+Copy code
+alert(3 +
+1
++ 2);
+Outputs 6, as JavaScript understands the expression continues.
+Potential Errors:
+
+Missing semicolons can lead to hard-to-detect errors, such as:
+javascript
+Copy code
+alert("Hello")
+[1, 2].forEach(alert); // Treated as a single invalid statement.
+To avoid such issues, always use semicolons between statements.
+Comments
+Comments help explain code and are ignored by the JavaScript engine.
+
+Single-Line Comments: Use //.
+
+javascript
+Copy code
+// This is a single-line comment
+alert('Hello'); // Comment after a statement
+Multi-Line Comments: Use /* */.
+
+javascript
+Copy code
+/* This is a 
+   multi-line comment */
+alert('Hello');
+Disabling Code: Comments can temporarily disable code.
+
+javascript
+Copy code
+/* alert('Hello'); */
+alert('World');
+Nested Comments: Not supported. Nested /*...*/ will cause errors.
+
+javascript
+Copy code
+/*
+  /* Invalid nested comment */
+*/
+Hotkeys for Commenting: Most editors allow commenting with shortcuts:
+
+Single-line: Ctrl+/ or Cmd+/ (Mac).
+Multi-line: Ctrl+Shift+/ or Cmd+Option+/ (Mac).
+
+What is "use strict"?
+Definition: A special directive to enable modern JavaScript functionality.
+Purpose:
+Fixes past mistakes in JavaScript.
+Enforces stricter parsing and error handling for better code quality.
+How to Enable Strict Mode?
+For the Whole Script: Place "use strict" at the top of your script.
+
+javascript
+Copy code
+"use strict";
+
+// Modern strict mode is enabled
+let x = 3.14; // Allowed in strict mode
+For Specific Functions: Place "use strict" inside a function to enable strict mode only within that function.
+
+javascript
+Copy code
+function example() {
+  "use strict";
+  // Strict mode is active here
+}
+
+// Outside the function, no strict mode
+Rules for Placement
+"use strict" must be at the very top of the script or function.
+No code (except comments) should appear before it:
+javascript
+Copy code
+alert("some code"); // Incorrect: "use strict" ignored
+"use strict";       // Ignored here
+Key Notes About "use strict"
+Irreversible:
+
+Once enabled, strict mode cannot be turned off within the same script.
+Browser Console Behavior:
+
+The browser console doesn’t use strict mode by default.
+To enable it:
+javascript
+Copy code
+'use strict'; 
+// Your code here
+Workaround for Older Consoles:
+
+javascript
+Copy code
+(function() {
+  'use strict';
+
+  // Your code here
+})();
+Do We Need "use strict"?
+For Now:
+
+Add "use strict" at the top of your scripts to enable modern behavior.
+In the Future:
+
+Once you use advanced features like classes and modules, "use strict" becomes unnecessary as they enable strict mode automatically.
+Benefits of Strict Mode
+Eliminates some silent JavaScript errors by changing them to throw errors.
+Prevents the use of certain bad practices.
+Makes debugging easier by providing clearer error messages.
+Ensures better compatibility with future JavaScript versions.
+Summary
+Start scripts with "use strict" to write cleaner and safer code.
+Transition to using classes and modules in modern projects to benefit from automatic strict mode.
+All examples in this tutorial assume strict mode unless stated otherwise.
+
+String quotes
+importance: 5
+What is the output of the script?
+
+Number: Regular numbers (e.g., 123), special values like Infinity and NaN.
+BigInt: For very large integers.
+String: Text inside quotes ("Hello").
+Boolean: True or false.
+Null: Represents "nothing."
+Undefined: Variable declared but not assigned a value.
+Symbol: Unique identifiers.
+Object: Complex data like arrays or functions.
+The typeof operator tells the type of a value but has quirks (e.g., typeof null is "object", which is incorrect).
+
+let name = "Ilya";
+
+alert( hello ${1} ); // ?
+
+alert( hello ${"name"} ); // ?
+
+alert( hello ${name} ); // ?
+
+alert( \hello ${1}` );`
+
+${1} is a simple expression containing the number 1.
+The result is hello 1.
+alert( \hello ${"name"}` );`
+
+${"name"} is a string literal "name". It does not refer to the variable name, as it’s enclosed in quotes.
+The result is hello name.
+alert( \hello ${name}` );`
+
+${name} refers to the variable name, which has the value "Ilya".
+The result is hello Ilya.
+
+hello 1
+hello name
+hello Ilya
+
+Operands & Operators: An operand is what operators act on (e.g., in 5 + 3, 5 and 3 are operands, + is the operator).
+
+Unary operators work on one operand (e.g., -x).
+Binary operators work on two operands (e.g., x - y).
+Math Operators: JavaScript supports:
+
+Addition +, Subtraction -, Multiplication *, Division /, Remainder %, and Exponentiation **.
+Remainder (%) gives the remainder of division.
+Exponentiation ()** raises a number to a power (e.g., 2 ** 3 = 8).
+String Concatenation: The + operator can also join strings (e.g., 'Hello' + ' ' + 'World' gives 'Hello World').
+
+Unary Plus (+): Converts a value to a number (e.g., +"3" turns into 3).
+
+Operator Precedence: Operators have a priority in which they are evaluated. For example, multiplication * happens before addition +.
+
+Assignment (=): Stores values in variables. It has low precedence and can be used in expressions, such as x = y = 3.
+
+Increment/Decrement: ++ increases by 1, -- decreases by 1. They can be used in prefix or postfix form (++x or x++).
+
+Modify-in-place: Shortened operators like +=, -= help modify a variable directly (e.g., x += 5 is the same as x = x + 5).
+
+Bitwise Operators: These work with binary representations of numbers and are rarely used in regular web development.
+
+Comma Operator (,): Allows multiple expressions to be evaluated in one line, but only the result of the last one is returned.
+
+These operators are fundamental in JavaScript, and understanding their behavior helps in writing clear and efficient code.
+
+Summary of JavaScript Comparison Operators:
+Comparison Operators:
+
+> (greater than), < (less than), >= (greater than or equal), <= (less than or equal), == (equal), != (not equal).
+== checks equality but converts types, while === checks strict equality without type conversion.
+Boolean Result: Comparison operators return either true or false.
+
+String Comparison:
+
+Strings are compared letter-by-letter using Unicode order (case matters). For example, 'Z' > 'A' is true because 'Z' comes after 'A' in Unicode.
+Comparing Different Types:
+
+JavaScript converts different types to numbers when comparing. For instance, '2' > 1 is true because '2' is converted to the number 2.
+Boolean Comparisons:
+
+true becomes 1 and false becomes 0 during comparisons. For example, true == 1 is true.
+Strict Equality:
+
+== may return unexpected results (e.g., 0 == false is true), while === avoids these issues by not converting types (e.g., 0 === false is false).
+Null and Undefined Comparisons:
+
+null and undefined are only equal to each other with ==, not with other values. They behave differently in comparisons:
+null == undefined is true
+null > 0 is false but null >= 0 is true.
+undefined is special and shouldn't be compared to other values, as comparisons like undefined > 0 will return false.
+Avoiding Pitfalls:
+
+Be cautious when comparing null or undefined, especially with operators like >=, >, <, and <=. It's a good practice to check for null/undefined separately.
+
+Summary of Conditional Branching in JavaScript
+The if Statement:
+
+It evaluates a condition, and if the condition is true, it executes the block of code inside the if block.
+Example:
+javascript
+Copy code
+let year = prompt('In which year was ECMAScript-2015 specification published?', '');
+if (year == 2015) alert('You are right!');
+Curly Braces:
+
+Always use curly braces {} around the code block even for single statements to improve readability.
+Boolean Conversion:
+
+JavaScript treats certain values as falsy (e.g., 0, "", null, undefined, NaN) and others as truthy (e.g., any non-zero number, non-empty string).
+Example:
+javascript
+Copy code
+if (1) { ... } // Always executes
+if (0) { ... } // Never executes
+else Clause:
+
+The else block executes when the condition in the if statement is falsy.
+Example:
+javascript
+Copy code
+if (year == 2015) {
+  alert('Correct!');
+} else {
+  alert('Incorrect!');
+}
+Multiple Conditions (else if):
+
+You can check multiple conditions using else if.
+Example:
+javascript
+Copy code
+if (year < 2015) {
+  alert('Too early!');
+} else if (year > 2015) {
+  alert('Too late!');
+} else {
+  alert('Exactly!');
+}
+The Conditional (?) Operator:
+
+It’s a shorthand for if-else and evaluates a condition to return one of two values based on the condition’s truthiness.
+Syntax:
+javascript
+Copy code
+let result = condition ? value1 : value2;
+Example:
+javascript
+Copy code
+let accessAllowed = (age > 18) ? true : false;
+Multiple ? (Ternary Chain):
+
+You can chain multiple ? operators to test several conditions in a sequence.
+Example:
+javascript
+Copy code
+let message = (age < 3) ? 'Hi, baby!' : 
+  (age < 18) ? 'Hello!' : 
+  (age < 100) ? 'Greetings!' : 
+  'What an unusual age!';
+Non-traditional Use of ?:
+
+You can use ? to execute different code based on a condition without assigning the result to a variable. However, it’s not recommended for readability.
+Example:
+javascript
+Copy code
+(company == 'Netscape') ? alert('Right!') : alert('Wrong.');
+Best Practices:
+Use if-else when you need to perform different actions.
+Use ? when you need to return one of two values based on a condition.
+Avoid using ? for executing multiple statements or when readability might suffer.
+
+Summary of Logical Operators in JavaScript
+|| (OR Operator):
+
+Basic Use: The OR operator returns true if at least one of the operands is truthy; otherwise, it returns false.
+
+Example:
+javascript
+Copy code
+alert(true || false);  // true
+alert(false || false); // false
+Truthy and Falsy Values: In JavaScript, the OR operator evaluates operands and returns the first truthy value or the last operand if none are truthy.
+
+Example:
+javascript
+Copy code
+alert(1 || 0); // 1 (truthy)
+alert(null || 0 || 1); // 1 (first truthy value)
+alert(undefined || null || 0); // 0 (all falsy, returns last value)
+Short-Circuit Evaluation: OR stops evaluating once it finds a truthy value.
+
+Example:
+javascript
+Copy code
+true || alert("not printed");
+false || alert("printed");  // "printed"
+&& (AND Operator):
+
+Basic Use: The AND operator returns true if both operands are truthy, otherwise it returns false.
+
+Example:
+javascript
+Copy code
+alert(true && true); // true
+alert(true && false); // false
+Truthy and Falsy Values: In JavaScript, AND returns the first falsy value or the last operand if all are truthy.
+
+Example:
+javascript
+Copy code
+alert(1 && 0); // 0 (first falsy value)
+alert(1 && 5); // 5 (both truthy)
+alert(null && 5); // null (first falsy value)
+Short-Circuit Evaluation: AND stops evaluating once it finds a falsy value.
+
+Example:
+javascript
+Copy code
+null && alert("printed"); // does not execute alert
+! (NOT Operator):
+
+Basic Use: The NOT operator negates a boolean value, converting it to its opposite (true becomes false, and false becomes true).
+
+Example:
+javascript
+Copy code
+alert(!true); // false
+alert(!0);    // true
+Double NOT (!!): A common technique to convert any value to its boolean equivalent.
+
+Example:
+javascript
+Copy code
+alert(!!"non-empty string"); // true
+alert(!!null);               // false
+Operator Precedence:
+
+The NOT (!) operator has the highest precedence, followed by AND (&&), and then OR (||).
+Example:
+javascript
+Copy code
+alert(true && false || true);  // true (AND has higher precedence than OR)
+Best Practices and Usage Recommendations:
+Use || when you need to evaluate whether at least one condition is true.
+Use && when you need to ensure that all conditions are true.
+Use ! for negating a boolean value, or to convert a value to its boolean equivalent using !!.
+Avoid replacing if with &&: While && can execute a statement conditionally, if statements are generally more readable for branching logic. Use && for checking conditions but stick to if for more complex logic.
+
+Types of Loops:
+while loop:
+
+Repeats the code while the condition is truthy.
+The condition is checked before each iteration.
+Example:
+javascript
+Copy code
+let i = 0;
+while (i < 3) {
+  alert(i);
+  i++;
+}
+do...while loop:
+
+Executes the code at least once, and then checks the condition.
+The condition is checked after each iteration.
+Example:
+javascript
+Copy code
+let i = 0;
+do {
+  alert(i);
+  i++;
+} while (i < 3);
+for loop:
+
+A more complex loop with initialization, condition, and step.
+The most commonly used loop in JavaScript.
+Example:
+javascript
+Copy code
+for (let i = 0; i < 3; i++) {
+  alert(i);
+}
+Key Concepts:
+Inline variable declaration: Declaring variables inside the loop (let i = 0) limits their scope to the loop itself.
+Skipping parts of for: You can omit any part of the for loop (begin, condition, step).
+Breaking the loop: Use the break statement to exit a loop early. Example:
+javascript
+Copy code
+while (true) {
+  let value = +prompt("Enter a number", '');
+  if (!value) break; // Exits the loop if no value is entered.
+}
+Continuing to the next iteration: The continue statement skips the current iteration and moves to the next one. Example:
+javascript
+Copy code
+for (let i = 0; i < 10; i++) {
+  if (i % 2 == 0) continue;
+  alert(i); // Outputs odd numbers
+}
+Labels for breaking/continuing nested loops: Labels allow you to break or continue nested loops. Example:
+javascript
+Copy code
+outer: for (let i = 0; i < 3; i++) {
+  for (let j = 0; j < 3; j++) {
+    let input = prompt(`Value at coords (${i},${j})`, '');
+    if (!input) break outer; // Exits both loops.
+  }
+}
+Summary:
+while and do...while loops are used when the number of iterations is unknown beforehand.
+The for loop is commonly used when the number of iterations is known.
+You can break out of a loop early using break, and skip an iteration with continue.
+Labels are used to break or continue from nested loops.
+This structure gives flexibility for handling a variety of looping scenarios in JavaScript.
+
+Function Declaration:
+Functions in JavaScript are declared using the function keyword followed by a name, parameters (if any), and the body of the function (code to be executed).
+Example:
+javascript
+Copy code
+function showMessage() {
+  alert('Hello everyone!');
+}
+showMessage(); // Calls the function
+
+2. Local Variables:
+Variables declared inside a function are local and only accessible within that function.
+Example:
+javascript
+Copy code
+function showMessage() {
+  let message = 'Hello, I\'m JavaScript!';
+  alert(message);
+}
+showMessage(); // Works fine
+alert(message); // Error! `message` is local to the function
+3. Outer Variables:
+A function can access variables from the outer scope (global scope), and even modify them if necessary.
+If a local variable has the same name as an outer variable, the local variable shadows the outer variable within the function.
+Example:
+javascript
+Copy code
+let userName = 'John';
+function showMessage() {
+  let userName = 'Bob'; // local variable
+  alert('Hello, ' + userName); // Uses the local userName ('Bob')
+}
+showMessage();
+alert(userName); // 'John' (the global variable is unchanged)
+4. Global Variables:
+Variables declared outside of any function are global and accessible from anywhere in the script.
+It's generally good practice to minimize the use of global variables to avoid unintended consequences.
+5. Parameters and Arguments:
+Functions can accept parameters which act as placeholders for values passed to the function when called. These values are called arguments.
+Example:
+javascript
+Copy code
+function showMessage(from, text) {
+  alert(from + ": " + text);
+}
+showMessage('Ann', 'Hello!'); // Ann: Hello!
+6. Default Parameters:
+If a parameter is not provided during the function call, it can be assigned a default value.
+Example:
+javascript
+Copy code
+function showMessage(from, text = 'no text given') {
+  alert(from + ": " + text);
+}
+showMessage('Ann'); // Ann: no text given
+7. Returning Values:
+A function can return a value to the caller using the return keyword.
+Example:
+javascript
+Copy code
+function sum(a, b) {
+  return a + b;
+}
+let result = sum(1, 2);
+alert(result); // 3
+
+8. Naming Functions:
+Function names should clearly describe the action performed by the function. Common prefixes for naming functions are:
+get...: to retrieve a value
+calc...: to perform a calculation
+create...: to create something
+check...: to check something
+Example function names:
+showMessage(): shows a message
+getAge(): returns an age value
+calcSum(): calculates a sum
+9. Functions Should Do One Thing:
+A function should perform a single action as suggested by its name. Avoid combining multiple unrelated actions in a single function.
+Example: Instead of writing a function that both checks age and displays a message, split them into two distinct functions.
+10. Short Function Names:
+Common libraries, like jQuery and Lodash, sometimes use very short function names like $ and _, respectively, for frequently used functions. However, most of the time, function names should be concise but descriptive.
+11. Functions as Comments:
+A well-named function can often serve as a self-describing comment, making the code more readable and maintainable.
+Example:
+javascript
+Copy code
+function showPrimes(n) {
+  for (let i = 2; i < n; i++) {
+    if (!isPrime(i)) continue;
+    alert(i);  // prime number
+  }
+}
+
+function isPrime(n) {
+  for (let i = 2; i < n; i++) {
+    if (n % i == 0) return false;
+  }
+  return true;
+}
+Summary:
+Functions are essential for making code modular, reusable, and easy to maintain.
+They should have clear, descriptive names, typically starting with verbs (e.g., show, get, create).
+Functions should focus on doing a single task. If more tasks are required, split them into separate functions.
+
+Function expressions
+In JavaScript, a function is not a “magical language structure”, but a special kind of value.
+
+The syntax that we used before is called a Function Declaration:
+
+function sayHi() {
+  alert( "Hello" );
+}
+There is another syntax for creating a function that is called a Function Expression.
+
+It allows us to create a new function in the middle of any expression.
+
+For example:
+
+let sayHi = function() {
+  alert( "Hello" );
+};
+Here we can see a variable sayHi getting a value, the new function, created as function() { alert("Hello"); }.
+
+As the function creation happens in the context of the assignment expression (to the right side of =), this is a Function Expression.
+
+Please note, there’s no name after the function keyword. Omitting a name is allowed for Function Expressions.
+
+Here we immediately assign it to the variable, so the meaning of these code samples is the same: “create a function and put it into the variable sayHi”.
+
+In more advanced situations, that we’ll come across later, a function may be created and immediately called or scheduled for a later execution, not stored anywhere, thus remaining anonymous.
+
+Function is a value
+Let’s reiterate: no matter how the function is created, a function is a value. Both examples above store a function in the sayHi variable.
+
+We can even print out that value using alert:
+
+function sayHi() {
+  alert( "Hello" );
+}
+
+alert( sayHi ); // shows the function code
+Please note that the last line does not run the function, because there are no parentheses after sayHi. There are programming languages where any mention of a function name causes its execution, but JavaScript is not like that.
+
+In JavaScript, a function is a value, so we can deal with it as a value. The code above shows its string representation, which is the source code.
+
+Surely, a function is a special value, in the sense that we can call it like sayHi().
+
+But it’s still a value. So we can work with it like with other kinds of values.
+
+We can copy a function to another variable:
+
+function sayHi() {   // (1) create
+  alert( "Hello" );
+}
+
+let func = sayHi;    // (2) copy
+
+func(); // Hello     // (3) run the copy (it works)!
+sayHi(); // Hello    //     this still works too (why wouldn't it)
+Here’s what happens above in detail:
+
+The Function Declaration (1) creates the function and puts it into the variable named sayHi.
+Line (2) copies it into the variable func. Please note again: there are no parentheses after sayHi. If there were, then func = sayHi() would write the result of the call sayHi() into func, not the function sayHi itself.
+Now the function can be called as both sayHi() and func().
+We could also have used a Function Expression to declare sayHi, in the first line:
+
+let sayHi = function() { // (1) create
+  alert( "Hello" );
+};
+
+let func = sayHi;
+// ...
+Everything would work the same.
+
+Why is there a semicolon at the end?
+You might wonder, why do Function Expressions have a semicolon ; at the end, but Function Declarations do not:
+
+function sayHi() {
+  // ...
+}
+
+let sayHi = function() {
+  // ...
+};
+The answer is simple: a Function Expression is created here as function(…) {…} inside the assignment statement: let sayHi = …;. The semicolon ; is recommended at the end of the statement, it’s not a part of the function syntax.
+
+The semicolon would be there for a simpler assignment, such as let sayHi = 5;, and it’s also there for a function assignment.
+
+Callback functions
+Let’s look at more examples of passing functions as values and using function expressions.
+
+We’ll write a function ask(question, yes, no) with three parameters:
+
+question
+Text of the question
+yes
+Function to run if the answer is “Yes”
+no
+Function to run if the answer is “No”
+The function should ask the question and, depending on the user’s answer, call yes() or no():
+
+function ask(question, yes, no) {
+  if (confirm(question)) yes()
+  else no();
+}
+
+function showOk() {
+  alert( "You agreed." );
+}
+
+function showCancel() {
+  alert( "You canceled the execution." );
+}
+
+// usage: functions showOk, showCancel are passed as arguments to ask
+ask("Do you agree?", showOk, showCancel);
+In practice, such functions are quite useful. The major difference between a real-life ask and the example above is that real-life functions use more complex ways to interact with the user than a simple confirm. In the browser, such functions usually draw a nice-looking question window. But that’s another story.
+
+The arguments showOk and showCancel of ask are called callback functions or just callbacks.
+
+The idea is that we pass a function and expect it to be “called back” later if necessary. In our case, showOk becomes the callback for “yes” answer, and showCancel for “no” answer.
+
+We can use Function Expressions to write an equivalent, shorter function:
+
+function ask(question, yes, no) {
+  if (confirm(question)) yes()
+  else no();
+}
+
+ask(
+  "Do you agree?",
+  function() { alert("You agreed."); },
+  function() { alert("You canceled the execution."); }
+);
+Here, functions are declared right inside the ask(...) call. They have no name, and so are called anonymous. Such functions are not accessible outside of ask (because they are not assigned to variables), but that’s just what we want here.
+
+Such code appears in our scripts very naturally, it’s in the spirit of JavaScript.
+
+A function is a value representing an “action”
+Regular values like strings or numbers represent the data.
+
+A function can be perceived as an action.
+
+We can pass it between variables and run when we want.
+
+Function Expression vs Function Declaration
+Let’s formulate the key differences between Function Declarations and Expressions.
+
+First, the syntax: how to differentiate between them in the code.
+
+Function Declaration: a function, declared as a separate statement, in the main code flow:
+
+// Function Declaration
+function sum(a, b) {
+  return a + b;
+}
+Function Expression: a function, created inside an expression or inside another syntax construct. Here, the function is created on the right side of the “assignment expression” =:
+
+// Function Expression
+let sum = function(a, b) {
+  return a + b;
+};
+The more subtle difference is when a function is created by the JavaScript engine.
+
+A Function Expression is created when the execution reaches it and is usable only from that moment.
+
+Once the execution flow passes to the right side of the assignment let sum = function… – here we go, the function is created and can be used (assigned, called, etc. ) from now on.
+
+Function Declarations are different.
+
+A Function Declaration can be called earlier than it is defined.
+
+For example, a global Function Declaration is visible in the whole script, no matter where it is.
+
+That’s due to internal algorithms. When JavaScript prepares to run the script, it first looks for global Function Declarations in it and creates the functions. We can think of it as an “initialization stage”.
+
+And after all Function Declarations are processed, the code is executed. So it has access to these functions.
+
+For example, this works:
+
+sayHi("John"); // Hello, John
+
+function sayHi(name) {
+  alert( `Hello, ${name}` );
+}
+The Function Declaration sayHi is created when JavaScript is preparing to start the script and is visible everywhere in it.
+
+…If it were a Function Expression, then it wouldn’t work:
+
+sayHi("John"); // error!
+
+let sayHi = function(name) {  // (*) no magic any more
+  alert( `Hello, ${name}` );
+};
+Function Expressions are created when the execution reaches them. That would happen only in the line (*). Too late.
+
+Another special feature of Function Declarations is their block scope.
+
+In strict mode, when a Function Declaration is within a code block, it’s visible everywhere inside that block. But not outside of it.
+
+For instance, let’s imagine that we need to declare a function welcome() depending on the age variable that we get during runtime. And then we plan to use it some time later.
+
+If we use Function Declaration, it won’t work as intended:
+
+let age = prompt("What is your age?", 18);
+
+// conditionally declare a function
+if (age < 18) {
+
+  function welcome() {
+    alert("Hello!");
+  }
+
+} else {
+
+  function welcome() {
+    alert("Greetings!");
+  }
+
+}
+
+// ...use it later
+welcome(); // Error: welcome is not defined
+That’s because a Function Declaration is only visible inside the code block in which it resides.
+
+Here’s another example:
+
+let age = 16; // take 16 as an example
+
+if (age < 18) {
+  welcome();               // \   (runs)
+                           //  |
+  function welcome() {     //  |
+    alert("Hello!");       //  |  Function Declaration is available
+  }                        //  |  everywhere in the block where it's declared
+                           //  |
+  welcome();               // /   (runs)
+
+} else {
+
+  function welcome() {
+    alert("Greetings!");
+  }
+}
+
+// Here we're out of curly braces,
+// so we can not see Function Declarations made inside of them.
+
+welcome(); // Error: welcome is not defined
+What can we do to make welcome visible outside of if?
+
+The correct approach would be to use a Function Expression and assign welcome to the variable that is declared outside of if and has the proper visibility.
+
+This code works as intended:
+
+let age = prompt("What is your age?", 18);
+
+let welcome;
+
+if (age < 18) {
+
+  welcome = function() {
+    alert("Hello!");
+  };
+
+} else {
+
+  welcome = function() {
+    alert("Greetings!");
+  };
+
+}
+
+welcome(); // ok now
+Or we could simplify it even further using a question mark operator ?:
+
+let age = prompt("What is your age?", 18);
+
+let welcome = (age < 18) ?
+  function() { alert("Hello!"); } :
+  function() { alert("Greetings!"); };
+
+welcome(); // ok now
+When to choose Function Declaration versus Function Expression?
+As a rule of thumb, when we need to declare a function, the first thing to consider is Function Declaration syntax. It gives more freedom in how to organize our code, because we can call such functions before they are declared.
+
+That’s also better for readability, as it’s easier to look up function f(…) {…} in the code than let f = function(…) {…};. Function Declarations are more “eye-catching”.
+
+…But if a Function Declaration does not suit us for some reason, or we need a conditional declaration (we’ve just seen an example), then Function Expression should be used.
+
+Summary
+Functions are values. They can be assigned, copied or declared in any place of the code.
+If the function is declared as a separate statement in the main code flow, that’s called a “Function Declaration”.
+If the function is created as a part of an expression, it’s called a “Function Expression”.
+Function Declarations are processed before the code block is executed. They are visible everywhere in the block.
+Function Expressions are created when the execution flow reaches them.
+In most cases when we need to declare a function, a Function Declaration is preferable, because it is visible prior to the declaration itself. That gives us more flexibility in code organization, and is usually more readable.
+
+So we should use a Function Expression only when a Function Declaration is not fit for the task. We’ve seen a couple of examples of that in this chapter, and will see more in the future.
+
+Basic Arrow Function Syntax:
+The syntax is more compact than traditional function expressions.
+Instead of function, you use => (an arrow) to define the function.
+javascript
+Copy code
+let sum = (a, b) => a + b;  // Short form for sum function
+alert(sum(1, 2));  // 3
+This is equivalent to the traditional function expression:
+
+javascript
+Copy code
+let sum = function(a, b) {
+  return a + b;
+};
+alert(sum(1, 2));  // 3
+2. Single Argument (No Parentheses Needed):
+If there's only one argument, parentheses around it can be omitted.
+javascript
+Copy code
+let double = n => n * 2;  // Same as: let double = function(n) { return n * 2; }
+alert(double(3));  // 6
+3. No Arguments (Empty Parentheses Required):
+If there are no arguments, you must include empty parentheses.
+javascript
+Copy code
+let sayHi = () => alert("Hello!");
+sayHi();  // Hello!
+4. Multiline Arrow Functions:
+If you need to write more complex functions with multiple expressions, you can use curly braces {}.
+You must use the return statement explicitly to return a value from a function.
+javascript
+Copy code
+let sum = (a, b) => {
+  let result = a + b;
+  return result;  // Explicit return is needed when using curly braces
+};
+alert(sum(1, 2));  // 3
+5. Arrow Functions in Conditional Logic:
+Arrow functions can also be used in conditional statements or to define functions dynamically, like in this example:
+javascript
+Copy code
+let age = prompt("What is your age?", 18);
+let welcome = (age < 18) ? () => alert('Hello!') : () => alert("Greetings!");
+welcome();  // Displays a greeting based on the age
+6. Summary:
+Without curly braces: (arg1, arg2) => expression – evaluates and returns the result of the expression.
+With curly braces: (arg1, arg2) => { body } – allows multiple statements, but you need an explicit return to return a value.
+Arrow functions are perfect for concise code, especially in cases like callbacks or simple calculations, and they help improve the readability and efficiency of your code.
+
+
 Chapter 3
+
+Creating Objects
+Objects are collections of key-value pairs, where keys are strings and values can be any data type.
+You can create objects using either:
+js
+Copy code
+let user = new Object();  // object constructor
+let user = {};            // object literal (commonly used)
+2. Properties
+You can define properties using the syntax:
+js
+Copy code
+let user = {
+  name: "John",
+  age: 30
+};
+Access properties using dot notation (user.name) or square brackets (user["name"]).
+3. Adding/Removing Properties
+Add properties:
+js
+Copy code
+user.isAdmin = true;
+Remove properties:
+js
+Copy code
+delete user.age;
+4. Multiword Property Names
+For multi-word property names, you must use square bracket notation:
+js
+Copy code
+let user = { "likes birds": true };
+5. Computed Properties
+You can use expressions inside square brackets to define properties:
+js
+Copy code
+let fruit = "apple";
+let bag = { [fruit]: 5 };  // bag.apple = 5
+6. Property Shorthand
+When variable names and property names are the same, you can use shorthand:
+js
+Copy code
+function makeUser(name, age) {
+  return { name, age };  // shorthand for name: name, age: age
+}
+7. Special Property Names
+Property names can include reserved keywords like for, let, and return:
+js
+Copy code
+let obj = { for: 1, let: 2, return: 3 };
+8. Accessing Non-Existent Properties
+JavaScript will not throw an error when accessing a non-existent property; instead, it returns undefined.
+You can check for existence using the "in" operator:
+js
+Copy code
+"name" in user;  // true if "name" exists
+9. The for..in Loop
+Use for..in to iterate over all keys in an object:
+js
+Copy code
+for (let key in user) {
+  alert(key);  // alerts each property name
+}
+10. Property Order
+Integer keys are sorted in ascending order, while string keys retain the order in which they were added to the object.
+11. Summary
+Objects are versatile and allow storing key-value pairs.
+They support dot and square bracket notation for accessing properties, and various operations such as adding, removing, and checking for properties.
+Objects are a core feature of JavaScript and understanding them thoroughly is essential. You can manipulate data effectively by using objects to store structured information in the form of properties.
+
+Primitive vs. Object Assignment:
+Primitives (like strings, numbers, booleans) are copied by value. When you assign one primitive to another, they are completely independent.
+Objects, however, are assigned and copied by reference. This means that when you assign an object to another variable, both variables point to the same object in memory.
+2. Object Reference:
+When you assign an object to a variable, that variable holds a reference (memory address) to the object, not a copy of the object itself.
+If you modify the object through one variable, the changes will be reflected in the other variable since both refer to the same object.
+3. Comparison by Reference:
+Two objects are equal only if they reference the same memory address. Even if they contain the same properties, they are not considered equal if they refer to different memory locations.
+4. Modifying const Objects:
+When you declare an object as const, you can still modify its properties. The const keyword only prevents reassigning the variable to a different object, not altering the properties of the object.
+5. Cloning Objects:
+Shallow copy (like using Object.assign) creates a new object, but nested objects are still copied by reference, not duplicated.
+Deep copy (like using structuredClone) ensures that all nested objects are also copied by value, so changes to nested objects do not affect the original object.
+6. Structured Cloning:
+The structuredClone method can deeply clone objects, handling circular references and most data types, but it does not support cloning function properties.
+7. Lodash _.cloneDeep:
+For complex cases where deep cloning is needed, especially for objects with functions or other advanced structures, libraries like Lodash offer a deep cloning function (_.cloneDeep), which handles more cases than the built-in structuredClone.
+Summary:
+Understanding how JavaScript handles object references and cloning is crucial when working with objects to avoid unintended side effects, especially when dealing with nested structures. For most use cases:
+
+Use Object.assign for shallow copies.
+Use structuredClone or a library like Lodash for deep cloning when necessary.
+
+Methods in Objects:
+A method is a function that is a property of an object.
+You can define methods directly inside an object:
+js
+Copy code
+let user = {
+  name: "John",
+  sayHi() { // Method shorthand
+    alert("Hello!");
+  }
+};
+user.sayHi(); // Hello!
+Methods allow objects to perform actions, such as logging in, logging out, or performing calculations.
+2. this Keyword in Methods:
+In object methods, this refers to the object that called the method. It helps access the properties of the object.
+In the example:
+js
+Copy code
+let user = {
+  name: "John",
+  sayHi() {
+    alert(this.name); // `this` refers to the `user` object
+  }
+};
+user.sayHi(); // John
+this refers to the object (user in this case) that called the method.
+3. Method Shorthand:
+There’s a shorthand syntax for defining methods inside an object:
+js
+Copy code
+let user = {
+  sayHi() {
+    alert("Hello");
+  }
+};
+This is a more concise way to write methods, and in most cases, it is preferred.
+4. Understanding this Context:
+The value of this is determined at runtime when the method is called, not at the time it’s defined.
+When calling a method like object.method(), this inside the method refers to object.
+Example:
+
+js
+Copy code
+let user = { name: "John" };
+let admin = { name: "Admin" };
+
+function sayHi() {
+  alert(this.name);
+}
+
+user.f = sayHi;
+admin.f = sayHi;
+
+user.f(); // John
+admin.f(); // Admin
+Here, this refers to the object that calls the method, which can be user or admin.
+
+5. Calling Functions Without an Object:
+If a function is called without an object (e.g., sayHi()), this will be undefined in strict mode.
+In non-strict mode, this would refer to the global object (in a browser, it's window).
+Example in strict mode:
+
+js
+Copy code
+'use strict';
+function sayHi() {
+  alert(this); // undefined
+}
+sayHi();
+Without strict mode:
+
+js
+Copy code
+function sayHi() {
+  alert(this); // window (global object)
+}
+sayHi();
+6. Arrow Functions and this:
+Arrow functions do not have their own this. Instead, they inherit this from the outer function where they are defined.
+This is useful in certain cases, where you want the this from the outer context to be used inside the arrow function.
+Example:
+
+js
+Copy code
+let user = {
+  firstName: "Ilya",
+  sayHi() {
+    let arrow = () => alert(this.firstName); // `this` comes from outer sayHi method
+    arrow();
+  }
+};
+
+user.sayHi(); // Ilya
+Summary:
+Methods are functions stored as object properties.
+this inside a method refers to the object that calls the method.
+Method shorthand makes object method definitions more concise.
+this is evaluated at runtime, depending on the calling context.
+Arrow functions do not have their own this; they inherit it from the surrounding context.
+Understanding this is crucial when working with objects and methods in JavaScript, as it determines which object the method operates on.
+
+Constructor Functions:
+Constructor functions are regular functions, but they are conventionally named with a capital letter to distinguish them from regular functions.
+When a function is executed with the new operator, it creates a new object and assigns it to this, then adds properties to this.
+Example:
+
+js
+Copy code
+function User(name) {
+  this.name = name;
+  this.isAdmin = false;
+}
+
+let user = new User("Jack");
+alert(user.name);  // Jack
+alert(user.isAdmin);  // false
+The new operator creates a new object, which gets assigned to this, and then the function populates it with properties.
+
+2. How the new Operator Works:
+When you call a function with new, JavaScript follows these steps:
+Creates a new empty object.
+Sets the context (this) to the new object.
+The function's code runs, and properties are added to this.
+The new object (this) is returned, unless the constructor explicitly returns a different object.
+The constructor function essentially allows you to create multiple instances of objects, each with their own properties.
+
+Example of using the new operator:
+
+js
+Copy code
+function User(name) {
+  this.name = name;
+  this.isAdmin = false;
+}
+
+let user1 = new User("Alice");
+let user2 = new User("Bob");
+alert(user1.name);  // Alice
+alert(user2.name);  // Bob
+3. Constructor Mode and new.target:
+Inside a constructor function, the new.target property tells you whether the function was called with new or not.
+If the function was called with new, new.target will reference the function itself.
+If called without new, new.target will be undefined.
+Example:
+
+js
+Copy code
+function User() {
+  alert(new.target);
+}
+
+User();  // undefined (called without new)
+new User();  // function User { ... } (called with new)
+You can also use new.target to make the function behave like a constructor even if it’s called without new, by automatically redirecting the call to new.
+
+Example:
+
+js
+Copy code
+function User(name) {
+  if (!new.target) {  // If not called with `new`
+    return new User(name);  // Redirect call to `new`
+  }
+
+  this.name = name;
+}
+
+let user = User("John");  // Automatically calls `new User("John")`
+alert(user.name);  // John
+4. Return Values in Constructors:
+Constructors normally don’t have a return statement. The this object created by new is automatically returned.
+If a constructor explicitly returns an object, that object is returned instead of the this object.
+If the constructor returns a primitive value, it is ignored, and this is still returned.
+Example where the return overrides this:
+
+js
+Copy code
+function BigUser() {
+  this.name = "John";
+  return { name: "Godzilla" };  // This object is returned instead of `this`
+}
+
+let user = new BigUser();
+alert(user.name);  // Godzilla
+Example where this is returned:
+
+js
+Copy code
+function SmallUser() {
+  this.name = "John";
+  return;  // No return value, `this` is returned
+}
+
+let user = new SmallUser();
+alert(user.name);  // John
+5. Omitting Parentheses:
+You can omit parentheses when calling a constructor function with new. The following are equivalent:
+js
+Copy code
+let user1 = new User("John");
+let user2 = new User;  // No parentheses
+Omitting parentheses is allowed, but it’s generally not considered good practice.
+
+6. Methods in Constructors:
+Constructor functions can also include methods that objects created from them can use.
+These methods are added to the object, just like properties.
+Example:
+
+js
+Copy code
+function User(name) {
+  this.name = name;
+  this.sayHi = function() {
+    alert("My name is: " + this.name);
+  };
+}
+
+let john = new User("John");
+john.sayHi();  // My name is: John
+Summary:
+Constructor functions allow for creating multiple instances of objects with shared properties and methods.
+The new operator initializes a new object, sets this to that object, and returns it.
+new.target can be used to check if a function was called with new or not, and to redirect calls if necessary.
+Constructors can return objects, but the returned object will override the default this object.
+Constructor functions can also have methods that operate on the object's properties.
+Constructor functions are a foundational concept in JavaScript, enabling reusable object creation and helping implement object-oriented principles.
+
+The optional chaining (?.) operator in JavaScript is a powerful feature that helps handle cases where intermediate properties in an object may not exist, avoiding errors without the need for repetitive checks. Here’s a breakdown of how it works and its key points:
+
+The Problem:
+In JavaScript, accessing nested properties without checking each level for existence can result in errors. For example:
+
+js
+Copy code
+let user = {}; // user has no "address" property
+alert(user.address.street); // Error: Cannot read property 'street' of undefined
+This is problematic, especially in cases where some properties might be missing.
+
+The Solution: Optional Chaining
+The optional chaining (?.) operator solves this problem. It allows safe access to deeply nested properties and methods, returning undefined instead of throwing an error if the value before the ?. is null or undefined.
+
+Basic Example:
+If we want to safely access user.address.street even if user.address is undefined:
+
+js
+Copy code
+let user = {}; // user has no "address" property
+alert(user?.address?.street); // undefined (no error)
+Instead of throwing an error, this returns undefined when user.address doesn't exist.
+
+Use Cases:
+Accessing Properties: The ?. operator checks if the left-hand value is null or undefined. If it is, the whole expression returns undefined; otherwise, it proceeds to access the property or method.
+
+Example:
+
+js
+Copy code
+let user = { address: { street: 'Main St' } };
+alert(user?.address?.street); // Main St
+
+let user2 = {};
+alert(user2?.address?.street); // undefined
+With Functions or Methods: If a function or method might not exist on an object, you can use optional chaining to avoid errors:
+
+js
+Copy code
+let userAdmin = { admin() { alert('Admin'); } };
+let userGuest = {};
+userAdmin.admin?.(); // Admin
+userGuest.admin?.(); // Nothing happens
+With Arrays and Brackets: Optional chaining also works with bracket notation, useful for accessing dynamic property names:
+
+js
+Copy code
+let user = { firstName: 'John' };
+let key = 'firstName';
+alert(user?.[key]); // John
+
+let user2 = null;
+alert(user2?.[key]); // undefined
+With Delete: You can safely use optional chaining with delete to delete properties if they exist:
+
+js
+Copy code
+let user = { name: 'John' };
+delete user?.name; // Deletes user.name if user exists
+Key Points:
+Prevents Errors: It avoids runtime errors caused by accessing properties on null or undefined values.
+Short-circuiting: If the value before ?. is null or undefined, the operation stops, and undefined is returned.
+Nested Properties: You can chain multiple ?. operators to safely access deeply nested properties.
+js
+Copy code
+let user = {};
+alert(user?.address?.street?.name); // undefined
+Works with Functions: Use ?.() to safely call functions that may not be defined.
+Does Not Work on Left of Assignment: It cannot be used for assignments or writes, such as user?.name = "John".
+When to Use Optional Chaining:
+Optional chaining should be used when:
+
+You expect that some properties might not exist and it’s acceptable for them to be undefined in such cases.
+You want to avoid repetitive if checks for each level of a deeply nested structure.
+Limitations:
+Avoid Overuse: Overusing optional chaining can silence programming errors that you may want to catch, especially when a property is critical for the logic.
+Declared Variables Only: The variable must be declared (e.g., let user or const user), as attempting to access a non-declared variable with ?. will cause an error.
+Summary:
+Optional chaining (?.) is a concise and efficient way to handle cases where a property or method might not exist. It allows you to avoid verbose if checks and reduces the chance of runtime errors. However, it should be used judiciously, only when it’s acceptable for a value to be undefined without causing issues in your program.
+
+he Symbol type in JavaScript represents a unique identifier. Here’s a summary of its key features:
+
+Key Characteristics of Symbols:
+Uniqueness: Each symbol is guaranteed to be unique, even if it has the same description. For example, Symbol("id") !== Symbol("id"), even though both have the same name.
+
+Non-Auto Conversion: Symbols do not auto-convert to strings. For instance, attempting to directly print a symbol with alert(id) results in a TypeError. To display the symbol, you need to explicitly convert it using .toString() or access its description using id.description.
+
+“Hidden” Properties: Symbols allow you to add properties to objects that other code won’t accidentally access or overwrite. This is particularly useful when working with objects that are part of third-party code.
+
+Example:
+
+javascript
+Copy code
+let user = { name: "John" };
+let id = Symbol("id");
+user[id] = 123;
+alert(user[id]); // 123
+Symbolic Properties in Objects: You can use symbols as property keys in object literals, but you need to wrap the symbol in square brackets.
+
+Example:
+
+javascript
+Copy code
+let user = {
+  name: "John",
+  [id]: 123
+};
+Symbols in Iteration: Symbol properties are not included in for..in loops or Object.keys(). This helps prevent unintended access to symbolic properties, ensuring that they remain hidden unless explicitly accessed.
+
+Global Symbol Registry: Symbols can be created globally via Symbol.for(key), which ensures that repeated access to the same symbol by name returns the same instance of the symbol. This is useful when you need to share symbols across different parts of an application.
+
+Example:
+
+javascript
+Copy code
+let id = Symbol.for("id");
+let idAgain = Symbol.for("id");
+alert(id === idAgain); // true
+Symbol Methods:
+
+Symbol.keyFor(symbol): Retrieves the name (key) of a global symbol.
+Object.getOwnPropertySymbols(obj): Returns an array of all symbol properties in an object.
+Reflect.ownKeys(obj): Returns all keys (including symbols) of an object.
+System Symbols: JavaScript has a number of built-in symbols (such as Symbol.iterator, Symbol.toPrimitive, etc.) that are used for system-level behaviors. These symbols can be accessed and used to fine-tune how objects behave in certain operations.
+
+Use Cases:
+Hidden object properties: Symbols allow you to safely add properties to objects that should not be accidentally modified or accessed by other code.
+Global Symbols: For sharing the same symbol across different modules or parts of an application, using Symbol.for(key) ensures that the same symbol is used consistently.
+Example of Symbol Usage:
+javascript
+Copy code
+let user = { name: "John" };
+let id = Symbol("id");
+
+user[id] = 123; // Adding a "hidden" property
+
+// Accessing the symbol property directly
+alert(user[id]); // 123
+
+// Iteration ignores symbolic properties
+for (let key in user) {
+  console.log(key); // name
+}
+
+// Cloning an object retains symbol properties
+let clone = Object.assign({}, user);
+alert(clone[id]); // 123
+By using symbols, you can protect your code from naming conflicts and ensure that certain properties remain "hidden" and are not accidentally accessed or overwritten.
+
+In JavaScript, when we perform operations like adding (obj1 + obj2), subtracting (obj1 - obj2), or printing (alert(obj)), objects are automatically converted into primitive values (like numbers or strings) for those operations. JavaScript doesn’t allow us to customize how operators work directly on objects.
+
+Key Points:
+No math with objects: Operations on objects like addition won’t result in another object; they result in a primitive value (like a number or string).
+
+Conversion Rules:
+
+Objects are converted to either a string or a number, depending on the operation.
+The conversion is done based on "hints" that determine whether the object should be converted to a string ("string") or a number ("number").
+Methods for Conversion: JavaScript first checks if an object has a special method called Symbol.toPrimitive for conversion. If it doesn’t, it tries toString or valueOf, depending on whether it needs a string or number.
+
+Custom Conversion: You can define how an object should be converted by implementing Symbol.toPrimitive, toString, or valueOf methods in your object.
+
+Example:
+
+If you add an object with a number, JavaScript will call toString or valueOf to convert the object into a string or number before doing the operation.
+Important: The methods must return a primitive (a number, string, or boolean) and not another object. If they return an object, it’s ignored or causes an error, depending on the method used.
+
+In simple terms: JavaScript automatically converts objects into strings or numbers when necessary for operations, and you can control this conversion by defining special methods in your objects.
+
 Chapter 4
+
 Chapter 5
+
 Chapter 6
+
 Chapter 7
+
 Chapter 8
+
 Chapter 9
+
 Chapter 10
+
 Chapter 11
+
  
