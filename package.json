@@ -1,0 +1,23 @@
+{
+  "name": "jokes.api",
+  "version": "1.0.0",
+  "description": "express tut",
+  "homepage": "https://github.com/ryanboodhoo/JS.node.JokeAPI#readme",
+  "bugs": {
+    "url": "https://github.com/ryanboodhoo/JS.node.JokeAPI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanboodhoo/JS.node.JokeAPI.git"
+  },
+  "license": "ISC",
+  "author": "RYAN_BOODHOO",
+  "type": "commonjs",
+  "main": "demo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
